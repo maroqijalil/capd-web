@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginAdminController;
+use App\Http\Controllers\Auth\RegisterAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+// Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 	Route::view('dashboard', 'dashboard')->name('dashboard');
 	Route::view('forms', 'forms')->name('forms');
 	Route::view('cards', 'cards')->name('cards');
@@ -15,4 +17,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 	Route::view('modals', 'modals')->name('modals');
 	Route::view('tables', 'tables')->name('tables');
 	Route::view('calendar', 'calendar')->name('calendar');
+// });
+
+Route::name('admin.')->group(function () {
+	Route::get('/daftar', [RegisterAdminController::class, 'create'])->name('register');
+	Route::post('/daftar', [RegisterAdminController::class, 'store'])->name('register.store');
+
+	Route::get('/masuk', [LoginAdminController::class, 'create'])->name('login');
+	Route::post('/masuk', [LoginAdminController::class, 'store'])->name('login.store');
 });

@@ -11,13 +11,16 @@
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "google/cloud-firestore": "^1.20",
         "guzzlehttp/guzzle": "^7.0.1",
+        "kreait/firebase-php": "^5.24",
         "kreait/laravel-firebase": "^3.1",
         "laravel/framework": "^8.0",
         "laravel/jetstream": "^1.2",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "lorisleiva/laravel-actions": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
