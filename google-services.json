@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283641516429",
+    "project_id": "capd-application",
+    "storage_bucket": "capd-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283641516429:android:20d9f670c569c6d1422dc4",
+        "android_client_info": {
+          "package_name": "id.capd.sahabat.capdapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283641516429-3dml29g3odornitcm6746gnp2k8al4o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkwiNAaKT43b-E9aTjlnjAwpngE9WfvLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283641516429-3dml29g3odornitcm6746gnp2k8al4o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
