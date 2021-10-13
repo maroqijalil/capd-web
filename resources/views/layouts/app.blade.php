@@ -40,7 +40,7 @@
         @include('layouts.mobile-menu')
 
         <div class="flex flex-col flex-1 w-full">
-            @include('layouts.navigation-dropdown')
+            @include('layouts.navigation-dropdown', ['user' => $user])
             <main class="h-full overflow-y-auto">
                 {{ $slot }}
             </main>

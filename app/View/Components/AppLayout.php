@@ -2,29 +2,22 @@
 
 namespace App\View\Components;
 
+use App\Actions\User\GetUser;
 use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
-    public $title;
+	public $title;
+	public $user;
 
-    /**
-     * Create a new component instance.
-     *
-     * @param $title
-     */
-    public function __construct($title)
-    {
-        $this->title = $title;
-    }
+	public function __construct($title)
+	{
+		$this->title = $title;
+		$this->user = GetUser::run();
+	}
 
-    /**
-     * Get the view / contents that represents the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        return view('layouts.app');
-    }
+	public function render()
+	{
+		return view('layouts.app');
+	}
 }

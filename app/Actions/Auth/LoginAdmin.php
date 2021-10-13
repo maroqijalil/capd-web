@@ -5,11 +5,11 @@ namespace App\Actions\Auth;
 use App\Models\Account;
 use App\Models\User;
 use Google\Cloud\Firestore\FirestoreClient;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Kreait\Firebase\Auth as FbAuth;
 use Kreait\Firebase\Firestore;
 use Lorisleiva\Actions\Concerns\AsAction;
+use Auth;
+use Session;
 
 class LoginAdmin
 {
@@ -26,8 +26,6 @@ class LoginAdmin
 
   public function handle(array $request): ?User
   {
-    $user = new User($request);
-
     $signInResult = $this->auth->signInWithEmailAndPassword(
       $request['email'],
       $request['password'],
@@ -49,15 +47,6 @@ class LoginAdmin
     $account = new Account($signInResult->data());
     Auth::login($account);
 
-    $result = $snapshot->data();
-
-    $user->nama = $result['nama'];
-    $user->alamat = $result['alamat'];
-    $user->tanggal_lahir = $result['tanggal_lahir'];
-    $user->no_hp = $result['no_hp'];
-    $user->riwayat_penyakit = $result['riwayat_penyakit'];
-    $user->foto_profil = $result['foto_profil'];
-
-    return $user;
+    return new User($snapshot->data());
   }
 }

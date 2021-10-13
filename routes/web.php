@@ -8,8 +8,8 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-// Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-	Route::view('dashboard', 'dashboard')->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+	Route::view('/beranda', 'dashboard')->name('dashboard');
 	Route::view('forms', 'forms')->name('forms');
 	Route::view('cards', 'cards')->name('cards');
 	Route::view('charts', 'charts')->name('charts');
@@ -17,9 +17,9 @@ Route::get('/', function () {
 	Route::view('modals', 'modals')->name('modals');
 	Route::view('tables', 'tables')->name('tables');
 	Route::view('calendar', 'calendar')->name('calendar');
-// });
+});
 
-Route::name('admin.')->group(function () {
+Route::name('admin.')->middleware('guest:web')->group(function () {
 	Route::get('/daftar', [RegisterAdminController::class, 'create'])->name('register');
 	Route::post('/daftar', [RegisterAdminController::class, 'store'])->name('register.store');
 
