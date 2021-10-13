@@ -2,15 +2,22 @@
 
 namespace App\Models;
 
-class Replacement
-{
-  public string $tanggal;
-  public int $tanggal_stamp;
-  public float $urin;
-  public string $hasil_prediksi;
-  public bool $status_penggantian;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-	public function getRefName(): string {
+class Replacement extends Model
+{
+  use HasFactory;
+
+  protected $fillable = [
+    'tanggal',
+    'tanggal_stamp',
+    'urin',
+    'hasil_prediksi',
+    'status_penggantian',
+  ];
+
+	public static function getRefName(): string {
 		return "penggantian";
 	}
 }

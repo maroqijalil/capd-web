@@ -19,10 +19,10 @@ class LoginAdminController extends Controller
 
 	public function store(LoginRequest $request)
 	{
-		$response = LoginAdmin::run(
-			$request['email'], 
-			$request['password']
-		);
+		$response = LoginAdmin::run($request->only([
+			'email',
+			'password',
+		]));
 
 		if ($response) {
 			return redirect()->route('dashboard');

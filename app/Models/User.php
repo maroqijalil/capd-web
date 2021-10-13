@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
-class User
-{
-  public string $nama;
-  public string $alamat;
-  public string $tanggal_lahir;
-  public string $no_hp;
-  public string $email;
-  public string $password;
-  public array $riwayat_penyakit;
-  public string $foto_profil;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-	public function __construct(string $email, string $password)
-	{
-		$this->email = $email;
-		$this->password = $password;
-	}
+class User extends Model
+{
+  use HasFactory;
+
+  protected $fillable = [
+    'nama',
+    'alamat',
+    'tanggal_lahir',
+    'no_hp',
+    'email',
+    'password',
+    'riwayat_panyakit',
+    'foto_profil',
+  ];
 
 	public static function getRefName(): string {
 		return "pengguna";

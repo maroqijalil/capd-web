@@ -2,8 +2,11 @@
 
 namespace App\Actions\Auth;
 
+use App\Models\Account;
 use App\Models\User;
 use Google\Cloud\Firestore\FirestoreClient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Kreait\Firebase\Auth as FbAuth;
 use Kreait\Firebase\Firestore;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -21,22 +24,30 @@ class LoginAdmin
     $this->db = $firestore->database();
   }
 
-  public function handle(string $email, string $password): ?User
+  public function handle(array $request): ?User
   {
-    $user = new User($email, $password);
+    $user = new User($request);
 
-    $signInResult = $this->auth->signInWithEmailAndPassword($email, $password);
+    $signInResult = $this->auth->signInWithEmailAndPassword(
+      $request['email'],
+      $request['password'],
+    );
 
     if (!$signInResult) {
       return null;
     }
 
     $uid = $signInResult->firebaseUserId();
+    Session::put('user_id', $uid);
+
     $snapshot = $this->db->collection(User::getRefName())->document($uid)->snapshot();
 
     if (!$snapshot->exists()) {
       return null;
     }
+
+    $account = new Account($signInResult->data());
+    Auth::login($account);
 
     $result = $snapshot->data();
 
