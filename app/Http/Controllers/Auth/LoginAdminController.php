@@ -25,7 +25,7 @@ class LoginAdminController extends Controller
 		]));
 
 		if ($response) {
-			return redirect()->route('dashboard');
+			return redirect()->route('admin.dashboard');
 		}
 	}
 

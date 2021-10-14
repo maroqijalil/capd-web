@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\Auth\LoginAdminController;
 use App\Http\Controllers\Auth\RegisterAdminController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']], function () {
-	Route::view('/beranda', 'dashboard')->name('dashboard');
+Route::name('admin.')->middleware('auth')->group(function () {
+	Route::get('/beranda', [DashboardController::class, 'index'])->name('dashboard');
 	Route::view('forms', 'forms')->name('forms');
 	Route::view('cards', 'cards')->name('cards');
 	Route::view('charts', 'charts')->name('charts');
