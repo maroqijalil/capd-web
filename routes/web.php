@@ -24,6 +24,9 @@ Route::name('admin.')->middleware('guest:web')->group(function () {
 	Route::get('/daftar', [RegisterAdminController::class, 'create'])->name('register');
 	Route::post('/daftar', [RegisterAdminController::class, 'store'])->name('register.store');
 
+	Route::get('/login', function() {
+		return redirect()->route('admin.login');
+	});
 	Route::get('/masuk', [LoginAdminController::class, 'create'])->name('login');
 	Route::post('/masuk', [LoginAdminController::class, 'store'])->name('login.store');
 });

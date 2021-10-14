@@ -448,11 +448,6 @@
     ),
     'features' => 
     array (
-      0 => 'registration',
-      1 => 'reset-passwords',
-      2 => 'update-profile-information',
-      3 => 'update-passwords',
-      4 => 'two-factor-authentication',
     ),
   ),
   'hashing' => 
@@ -474,9 +469,6 @@
     'stack' => 'livewire',
     'features' => 
     array (
-      0 => 'profile-photos',
-      1 => 'api',
-      2 => 'teams',
     ),
   ),
   'logging' => 

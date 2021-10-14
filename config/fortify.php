@@ -5,7 +5,7 @@ use Laravel\Fortify\Features;
 
 return [
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Fortify Guard
     |--------------------------------------------------------------------------
@@ -16,9 +16,9 @@ return [
     |
     */
 
-    'guard' => 'web',
+	'guard' => 'web',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Fortify Password Broker
     |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ return [
     |
     */
 
-    'passwords' => 'users',
+	'passwords' => 'users',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Username / Email
     |--------------------------------------------------------------------------
@@ -46,11 +46,11 @@ return [
     |
     */
 
-    'username' => 'email',
+	'username' => 'email',
 
-    'email' => 'email',
+	'email' => 'email',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Home Path
     |--------------------------------------------------------------------------
@@ -61,9 +61,9 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+	'home' => RouteServiceProvider::HOME,
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Fortify Routes Middleware
     |--------------------------------------------------------------------------
@@ -74,9 +74,9 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+	'middleware' => ['web'],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Rate Limiting
     |--------------------------------------------------------------------------
@@ -87,11 +87,11 @@ return [
     |
     */
 
-    'limiters' => [
-        'login' => null,
-    ],
+	'limiters' => [
+		'login' => null,
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Features
     |--------------------------------------------------------------------------
@@ -102,13 +102,13 @@ return [
     |
     */
 
-    'features' => [
-        Features::registration(),
-        Features::resetPasswords(),
-        // Features::emailVerification(),
-        Features::updateProfileInformation(),
-        Features::updatePasswords(),
-        Features::twoFactorAuthentication(),
-    ],
+	'features' => [
+		// Features::registration(),
+		// Features::resetPasswords(),
+		// Features::emailVerification(),
+		// Features::updateProfileInformation(),
+		// Features::updatePasswords(),
+		// Features::twoFactorAuthentication(),
+	],
 
 ];
