@@ -96,7 +96,7 @@
 			<li class="relative">
 				<button class="align-middle rounded-full focus:shadow-outline-red focus:outline-none"
 					@click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-					<img class="object-cover w-8 h-8 rounded-full" src="{{ $user->foto_profil }}" alt="{{ $user->nama }}"
+					<img class="object-cover w-8 h-8 rounded-full" src="{{ $user->foto_profil ?? "./img/user.png" }}" alt="{{ $user->nama ?? "" }}"
 						aria-hidden="true" />
 				</button>
 				<template x-if="isProfileMenuOpen">

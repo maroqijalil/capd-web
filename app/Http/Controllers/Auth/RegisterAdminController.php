@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Auth\RegisterAdmin;
 use Kreait\Firebase\Auth as FbAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,13 +24,14 @@ class RegisterAdminController extends Controller
 
 	public function store(RegisterRequest $request)
 	{
-		$result = $this->auth->signInWithEmailAndPassword(
-			$request['email'],
-			$request['password']
-		);
+		$response = RegisterAdmin::run($request->only([
+			'email',
+			'password',
+			'name',
+		]));
 
-		if ($result) {
-			return redirect()->route('dashboard');
+		if ($response) {
+			return redirect()->route('admin.dashboard');
 		}
 	}
 

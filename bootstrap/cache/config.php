@@ -430,7 +430,7 @@
     'username' => 'email',
     'email' => 'email',
     'views' => true,
-    'home' => '/beranda',
+    'home' => '/',
     'prefix' => '',
     'domain' => NULL,
     'limiters' => 

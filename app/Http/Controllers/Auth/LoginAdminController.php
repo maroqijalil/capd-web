@@ -25,8 +25,6 @@ class LoginAdminController extends Controller
 			'password',
 		]));
 
-		// dd($request->session()->all());
-
 		if ($response) {
 			return redirect()->route('admin.dashboard');
 		}
