@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'cpad-web',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://capd-web.test',
+    'url' => 'http://cpad-web.test',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:IYkzJsuBxbZXGT7AXaO94vqzZVPaQfc7pgDrzallrZ4=',
+    'key' => 'base64:FI2VcNnH/HdFAztj1+iKqPLvTCFKH2JchodQH9yt5RM=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -224,7 +224,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'cpad_web_cache',
   ),
   'cors' => 
   array (
@@ -262,7 +262,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'capd_web',
+        'database' => 'capd-web',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -272,9 +272,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'capd_web',
+        'database' => 'capd-web',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -292,9 +292,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'capd_web',
+        'database' => 'capd-web',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -307,9 +307,9 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'capd_web',
+        'database' => 'capd-web',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -322,7 +322,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'cpad_web_database_',
       ),
       'default' => 
       array (
@@ -357,7 +357,7 @@
       array (
         'driver' => 'local',
         'root' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/app/public',
-        'url' => 'http://capd-web.test/storage',
+        'url' => 'http://cpad-web.test/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -556,8 +556,8 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mailhog',
-        'port' => '1025',
+        'host' => 'smtp.mailtrap.io',
+        'port' => '2525',
         'encryption' => NULL,
         'username' => NULL,
         'password' => NULL,
@@ -594,7 +594,7 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'cpad-web',
     ),
     'markdown' => 
     array (
@@ -692,7 +692,7 @@
   ),
   'session' => 
   array (
-    'driver' => 'file',
+    'driver' => 'database',
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
@@ -705,7 +705,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'cpad_web_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,

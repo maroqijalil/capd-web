@@ -4,20 +4,17 @@ namespace App\Http\Middleware\Auth;
 
 use App\Providers\RouteServiceProvider;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-	public function handle($request, Closure $next, ...$guards)
+	public function handle($request, Closure $next)
 	{
-		$guards = empty($guards) ? [null] : $guards;
+    $uid = $request->session()->get('user_id');
 
-		foreach ($guards as $guard) {
-			if (Auth::guard($guard)->check()) {
-				return redirect(RouteServiceProvider::HOME);
-			}
+		if ($uid) {
+			return redirect(RouteServiceProvider::HOME);
+		} else {
+			return $next($request);
 		}
-
-		return $next($request);
 	}
 }

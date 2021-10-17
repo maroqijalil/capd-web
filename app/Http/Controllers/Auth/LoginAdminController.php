@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Actions\Auth\LoginAdmin;
+use App\Actions\Auth\LogoutAdmin;
 use App\Http\Controllers\Controller;
 use Kreait\Firebase\Auth as FbAuth;
 use Kreait\Firebase\Firestore;
@@ -24,6 +25,8 @@ class LoginAdminController extends Controller
 			'password',
 		]));
 
+		// dd($request->session()->all());
+
 		if ($response) {
 			return redirect()->route('admin.dashboard');
 		}
@@ -44,8 +47,12 @@ class LoginAdminController extends Controller
 		//
 	}
 
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		$response = LogoutAdmin::run();
+
+		if ($response) {
+			return redirect()->route('admin.login');
+		}
 	}
 }

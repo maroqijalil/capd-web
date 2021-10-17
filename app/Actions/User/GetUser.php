@@ -6,7 +6,6 @@ use App\Models\User;
 use Google\Cloud\Firestore\FirestoreClient;
 use Kreait\Firebase\Firestore;
 use Lorisleiva\Actions\Concerns\AsAction;
-use Session;
 
 class GetUser
 {
@@ -21,7 +20,12 @@ class GetUser
 
   public function handle(): ?User
   {
-    $uid = Session::get('user_id');
+    $uid = session()->get('user_id');
+
+    if (!$uid) {
+      return null;
+    }
+
     $snapshot = $this->db->collection(User::getRefName())->document($uid)->snapshot();
 
     if (!$snapshot->exists()) {
