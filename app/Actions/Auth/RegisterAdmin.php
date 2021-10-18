@@ -41,10 +41,17 @@ class RegisterAdmin
 
     session(['user_id' => $registerResult->uid]);
     session(['token_id' => $signInResult->idToken()]);
+    
+    $new_user = [
+      'nama' => $request['nama'],
+      'email' => $request['email'],
+      'password' => $request['password'],
+      'tipe' => 'admin'
+    ];
 
     $this->db->collection(User::getRefName())
       ->document($registerResult->uid)
-      ->set($request);
+      ->set($new_user);
 
     return true;
   }
