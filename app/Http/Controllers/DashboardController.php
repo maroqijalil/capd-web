@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$users = GetAllUser::run();
+		$users = $this->makePagination($request, GetAllUser::run(), 15);
 		return view('dashboard', compact(['users']));
 	}
 

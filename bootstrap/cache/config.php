@@ -185,7 +185,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/framework/cache/data',
+        'path' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -274,7 +274,7 @@
         'port' => '3306',
         'database' => 'capd-web',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -294,7 +294,7 @@
         'port' => '3306',
         'database' => 'capd-web',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -309,7 +309,7 @@
         'port' => '3306',
         'database' => 'capd-web',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -351,12 +351,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/app',
+        'root' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/app/public',
+        'root' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\app/public',
         'url' => 'http://cpad-web.test/storage',
         'visibility' => 'public',
       ),
@@ -373,7 +373,7 @@
     ),
     'links' => 
     array (
-      '/home/maroqi/Projects/WebsiteProjects/capd-web/public/storage' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/app/public',
+      'E:\\Projects\\WebsiteProjects\\capd-web\\public\\storage' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\app/public',
     ),
   ),
   'firebase' => 
@@ -488,13 +488,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/logs/laravel.log',
+        'path' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/logs/laravel.log',
+        'path' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -544,7 +544,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/logs/laravel.log',
+        'path' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -601,7 +601,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/home/maroqi/Projects/WebsiteProjects/capd-web/resources/views/vendor/mail',
+        0 => 'E:\\Projects\\WebsiteProjects\\capd-web\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -696,7 +696,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/framework/sessions',
+    'files' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -716,9 +716,9 @@
   array (
     'paths' => 
     array (
-      0 => '/home/maroqi/Projects/WebsiteProjects/capd-web/resources/views',
+      0 => 'E:\\Projects\\WebsiteProjects\\capd-web\\resources\\views',
     ),
-    'compiled' => '/home/maroqi/Projects/WebsiteProjects/capd-web/storage/framework/views',
+    'compiled' => 'E:\\Projects\\WebsiteProjects\\capd-web\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -763,7 +763,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => '/home/maroqi/Projects/WebsiteProjects/capd-web/resources/views/livewire',
+    'view_path' => 'E:\\Projects\\WebsiteProjects\\capd-web\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => NULL,
     'middleware_group' => 'web',
