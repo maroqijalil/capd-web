@@ -5,11 +5,12 @@ namespace App\Actions\Replacement;
 use App\Models\Replacement;
 use App\Models\ReplacementDetail;
 use App\Models\User;
+use DateTime;
 use Google\Cloud\Firestore\FirestoreClient;
 use Kreait\Firebase\Firestore;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class GetAllReplacementDetail
+class GetTodayReplacementDetail
 {
   use AsAction;
 
@@ -22,20 +23,23 @@ class GetAllReplacementDetail
 
   public function handle($id): array
   {
+    $todays_stamp = new DateTime();
+    $todays_stamp->setTime(0, 0);
+    $todays_stamp = $todays_stamp->format('U');
+
     $path = $this->db->collection(User::getRefName())
       ->document($id)
       ->collection(Replacement::getRefName());
 
     $replacements = $path
-      ->orderBy('tanggal_stamp', 'DESC')
+      ->where('tanggal_stamp', '>=', $todays_stamp)
       ->documents();
-
+    
     $datas = [];
     foreach ($replacements as $replacement) {
       if ($replacement->exists()) {
         $replacement_details = $path->document($replacement->id())
           ->collection(ReplacementDetail::getRefName())
-          ->orderBy('waktu_masuk_stamp', 'DESC')
           ->documents();
 
         foreach ($replacement_details as $rplc_dtls) {

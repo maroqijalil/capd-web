@@ -93,7 +93,7 @@
       @endphp
       @foreach($users as $user)
       @if ($index % 2 == 0)
-      <a href="{{ route('user.dashboard', ['id' => $user->id]) }}">
+      <a href="{{ route('user.dashboard', ['id' => $user->user_id]) }}">
         <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 transition-colors duration-150 hover:bg-red-50 cursor-pointer">
           <div class="w-14 h-14 justify-self-start mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
             @if ($user->foto_profil != "")

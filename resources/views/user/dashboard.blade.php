@@ -16,7 +16,7 @@
             Jumlah Penggantian
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{ $users->total() }}
+            {{ $replacements->total() }}
           </p>
         </div>
       </div>
@@ -27,10 +27,10 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Jumlah Jenis Cairan
+            Penggantian Hari ini
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{ count($liquids) }}
+            {{ count($todays_replacement) }}
           </p>
         </div>
       </div>
@@ -85,59 +85,58 @@
 
     <!-- List -->
     <h2 class="my-6 text-xl font-bold text-gray-700 dark:text-gray-200">
-      Pengguna
+      Penggantian
     </h2>
-    <div class="grid gap-6 mb-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
-      @php
-        $index = 0;
-      @endphp
-      @foreach($users as $user)
-      @if ($index % 2 == 0)
-      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 transition-colors duration-150 hover:bg-red-50 cursor-pointer">
-        <div class="w-14 h-14 justify-self-start mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-          @if ($user->foto_profil != "")
-          <img class="object-cover w-full h-full rounded-full" src="{{ $user->foto_profil }}" alt="" loading="lazy" />
-          @else
-          <div class="m-3">
-            @include('icons.person', ['size' => 8])
-          </div>
-          @endif
-        </div>
-        <div class="flex-1 flex flex-col items-stretch">
-          <p class="font-semibold text-md">{{ $user->nama }}</p>
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $user->email }}
-          </p>
-          <p class="text-xs text-gray-600 dark:text-gray-400">
-            {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
-          </p>
-        </div>
-        @include('icons.arrow-right')
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+              <th class="px-4 py-3">Cairan</th>
+              <th class="px-4 py-3">Tanggal</th>
+              <th class="px-4 py-3">Waktu Masuk</th>
+              <th class="px-4 py-3">Waktu Keluar</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            @foreach($replacements as $replacement)
+            <tr class="text-gray-700 dark:text-gray-400">
+              <td class="px-4 py-3">
+                <div class="flex items-center text-sm">
+                  <div>
+                    <p class="font-semibold">{{ $replacement->nama_cairan }}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                      {{ $replacement->konsentrasi }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-3 text-sm">
+                @php
+                  $tanggal = date('d-m-Y', $replacement->waktu_masuk_stamp);
+                @endphp
+                {{ $tanggal }}
+              </td>
+              <td class="px-4 py-3 text-sm">
+                @php
+                  $waktu_masuk = date('H:i:s', $replacement->waktu_masuk_stamp);
+                @endphp
+                {{ $waktu_masuk }}
+              </td>
+              <td class="px-4 py-3 text-sm">
+                @php
+                  $waktu_keluar = date('H:i:s', $replacement->waktu_keluar_stamp);
+                @endphp
+                {{ $waktu_keluar }}
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
       </div>
-      @else
-      <div class="flex items-center p-4 bg-red-50 rounded-lg shadow-xs transition-colors duration-150 hover:bg-white cursor-pointer">
-        <div class="w-14 h-14 justify-self-start p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-          @include('icons.person', ['size' => 8])
-        </div>
-        <div class="flex-1 flex flex-col items-stretch">
-          <p class="font-semibold text-md">{{ $user->nama }}</p>
-          <p class="text-sm text-gray-600 dark:text-gray-40">
-            {{ $user->email }}
-          </p>
-          <p class="text-xs text-gray-600 dark:text-gray-40">
-            {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
-          </p>
-        </div>
-        @include('icons.arrow-right')
-      </div>
-      @endif
-      @php
-        $index++;
-      @endphp
-      @endforeach
     </div>
 
-    {{ $users->links('vendor.pagination.custom-tailwind') }}
+    {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
   </div>
 
   {{-- <div class="py-12">

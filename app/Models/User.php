@@ -11,6 +11,7 @@ class User extends Model
   use HasFactory;
 
   protected $fillable = [
+    'user_id',
     'nama',
     'alamat',
     'tanggal_lahir',
@@ -24,4 +25,8 @@ class User extends Model
 	public static function getRefName(): string {
 		return "pengguna";
 	}
+
+  public function setId($id) {
+    $this->id = $id;
+  }
 }

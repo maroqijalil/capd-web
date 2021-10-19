@@ -10,6 +10,7 @@ class ReplacementDetail extends Model
   use HasFactory;
 
   protected $fillable = [
+    'replacement_detail_id',
     'nama_cairan',
     'konsentrasi',
     'volume_masuk',
@@ -30,7 +31,7 @@ class ReplacementDetail extends Model
     'tensi',
   ];
 
-	public function getRefName(): string {
+	public static function getRefName(): string {
 		return "detail_penggantian";
 	}
 }

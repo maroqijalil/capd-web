@@ -27,7 +27,7 @@ class GetAllUser
     foreach ($documents as $doc) {
       if ($doc->exists()) {
         $user = new User($doc->data());
-        $user->id = $doc->id();
+        $user->user_id = $doc->id();
         array_push($datas, $user);
       }
     }
