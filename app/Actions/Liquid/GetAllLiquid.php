@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\User;
+namespace App\Actions\Liquid;
 
-use App\Models\User;
+use App\Models\Liquid;
 use Google\Cloud\Firestore\FirestoreClient;
 use Kreait\Firebase\Firestore;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class GetAllUser
+class GetAllLiquid
 {
   use AsAction;
 
@@ -20,15 +20,12 @@ class GetAllUser
 
   public function handle(): array
   {
-    $documents = $this->db->collection(User::getRefName())
-      ->documents();
+    $documents = $this->db->collection(Liquid::getRefName())->documents();
 
     $datas = [];
     foreach ($documents as $doc) {
       if ($doc->exists()) {
-        $user = new User($doc->data());
-        $user->id = $doc->id();
-        array_push($datas, $user);
+        array_push($datas, new Liquid($doc->data()));
       }
     }
 

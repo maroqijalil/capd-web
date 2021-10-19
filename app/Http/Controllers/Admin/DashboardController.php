@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Actions\Liquid\GetAllLiquid;
 use App\Actions\User\GetAllUser;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -10,7 +12,8 @@ class DashboardController extends Controller
 	public function index(Request $request)
 	{
 		$users = $this->makePagination($request, GetAllUser::run(), 15);
-		return view('dashboard', compact(['users']));
+		$liquids = GetAllLiquid::run();
+		return view('dashboard', compact(['users', 'liquids']));
 	}
 
 	public function create()

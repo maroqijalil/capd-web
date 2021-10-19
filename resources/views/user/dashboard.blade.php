@@ -1,4 +1,4 @@
-<x-app-layout title="Dashboard" withMenu="false">
+<x-app-layout title="Dashboard" withMenu="true">
   <div class="container grid  mb-8 px-6 mx-auto">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Dashboard
@@ -13,7 +13,7 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Jumlah Pengguna
+            Jumlah Penggantian
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
             {{ $users->total() }}
@@ -93,29 +93,27 @@
       @endphp
       @foreach($users as $user)
       @if ($index % 2 == 0)
-      <a href="{{ route('user.dashboard', ['id' => $user->id]) }}">
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 transition-colors duration-150 hover:bg-red-50 cursor-pointer">
-          <div class="w-14 h-14 justify-self-start mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-            @if ($user->foto_profil != "")
-            <img class="object-cover w-full h-full rounded-full" src="{{ $user->foto_profil }}" alt="" loading="lazy" />
-            @else
-            <div class="m-3">
-              @include('icons.person', ['size' => 8])
-            </div>
-            @endif
+      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 transition-colors duration-150 hover:bg-red-50 cursor-pointer">
+        <div class="w-14 h-14 justify-self-start mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+          @if ($user->foto_profil != "")
+          <img class="object-cover w-full h-full rounded-full" src="{{ $user->foto_profil }}" alt="" loading="lazy" />
+          @else
+          <div class="m-3">
+            @include('icons.person', ['size' => 8])
           </div>
-          <div class="flex-1 flex flex-col items-stretch">
-            <p class="font-semibold text-md">{{ $user->nama }}</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              {{ $user->email }}
-            </p>
-            <p class="text-xs text-gray-600 dark:text-gray-400">
-              {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
-            </p>
-          </div>
-          @include('icons.arrow-right')
+          @endif
         </div>
-      </a>
+        <div class="flex-1 flex flex-col items-stretch">
+          <p class="font-semibold text-md">{{ $user->nama }}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            {{ $user->email }}
+          </p>
+          <p class="text-xs text-gray-600 dark:text-gray-400">
+            {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
+          </p>
+        </div>
+        @include('icons.arrow-right')
+      </div>
       @else
       <div class="flex items-center p-4 bg-red-50 rounded-lg shadow-xs transition-colors duration-150 hover:bg-white cursor-pointer">
         <div class="w-14 h-14 justify-self-start p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">

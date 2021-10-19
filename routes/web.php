@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Auth\LoginAdminController;
 use App\Http\Controllers\Auth\RegisterAdminController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminController;
+use App\Http\Controllers\User\DashboardController as UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('admin.')->group(function() {
 	Route::middleware('auth')->group(function () {
-		Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+		Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 		Route::view('forms', 'forms')->name('forms');
 		Route::view('cards', 'cards')->name('cards');
 		Route::view('charts', 'charts')->name('charts');
@@ -26,4 +27,8 @@ Route::name('admin.')->group(function() {
 	});
 
 	Route::post('/keluar', [LoginAdminController::class, 'destroy'])->name('logout');
+});
+
+Route::name('user.')->prefix('/user')->middleware('auth')->group(function () {
+	Route::get('/{id}', [UserController::class, 'show'])->name('dashboard');
 });
