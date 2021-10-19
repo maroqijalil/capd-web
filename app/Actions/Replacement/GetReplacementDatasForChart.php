@@ -42,21 +42,30 @@ class GetReplacementDatasForChart
       ->documents();
     
     $liquids = [];
-    $replacements_data = [];
+    $replacements_label = [];
+    $replacements_data1 = [];
+    $replacements_data2 = [];
     foreach ($replacements as $replacement) {
       if ($replacement->exists()) {
+        array_push($replacements_label, $replacement->data()['tanggal']);
+
         $replacement_details = $path->document($replacement->id())
           ->collection(ReplacementDetail::getRefName())
           ->orderBy('waktu_masuk_stamp', 'DESC')
           ->documents();
-
+        
+        $rpl_in = 0.0;
+        $rpl_out = 0.0;
         foreach ($replacement_details as $rplc_dtls) {
           if ($rplc_dtls->exists()) {
             $replacement_detail = new ReplacementDetail($rplc_dtls->data());
             array_push($liquids, $replacement_detail->nama_cairan." ".$replacement_detail->konsentrasi);
-            array_push($replacements_data, $replacement_detail);
+            $rpl_in += ($replacement_detail->volume_masuk + 0.0);
+            $rpl_out += ($replacement_detail->volume_keluar + 0.0);
           }
         }
+        array_push($replacements_data1, $rpl_in);
+        array_push($replacements_data2, $rpl_out);
       }
     }
 
@@ -76,7 +85,11 @@ class GetReplacementDatasForChart
         'data' => $liquids_vals,
         'color' => ['#0694a2', '#1c64f2', '#7e3af2'],
       ],
-      'line' => $replacements_data,
+      'line' => [
+        'label' => $replacements_label,
+        'data1' => $replacements_data1,
+        'data2' => $replacements_data2,
+      ],
     ];
 
     return $datas;

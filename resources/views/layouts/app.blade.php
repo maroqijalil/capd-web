@@ -35,7 +35,7 @@
 <body>
   <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
     @if ($withMenu)
-    @include('layouts.menu')
+    @include('layouts.menu', ['userId' => $userId])
     @endif
     @include('layouts.mobile-menu')
 

@@ -1,6 +1,6 @@
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
   <div class="container flex items-center justify-between h-full px-6 mx-auto text-red-600 dark:text-red-300">
-    @if ($withMenu))
+    @if ($withMenu)
     <!-- Mobile hamburger -->
     <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-red" @click="toggleSideMenu" aria-label="Menu">
       <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

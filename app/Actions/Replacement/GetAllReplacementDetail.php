@@ -36,6 +36,7 @@ class GetAllReplacementDetail
     $replacements = $replacements->documents();
 
     $datas = [];
+    $index = 1;
     foreach ($replacements as $replacement) {
       if ($replacement->exists()) {
         $replacement_details = $path->document($replacement->id())
@@ -49,7 +50,16 @@ class GetAllReplacementDetail
             $replacement_detail->replacement_detail_id = $rplc_dtls->id();
             array_push($datas, $replacement_detail);
           }
+          
+          $index++;
+          if ($limit != -1 && $index > $limit) {
+            break;
+          }
         }
+      }
+
+      if ($limit != -1 && $index > $limit) {
+        break;
       }
     }
 

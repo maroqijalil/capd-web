@@ -1,4 +1,4 @@
-<x-app-layout title="Dashboard" withMenu="true">
+<x-app-layout title="Dashboard" withMenu="true" userId="{{ $user_id }}">
   <div class="container grid  mb-8 px-6 mx-auto">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Dashboard
@@ -9,7 +9,7 @@
       <!-- Card -->
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-          @include('icons.member')
+          @include('icons.tasks')
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -168,24 +168,28 @@
     const pieUserCtx = document.getElementById('pie-user')
     window.myPie = new Chart(pieUserCtx, pieUserConfig)
 
+    var labels2 = {!! json_encode($chart_datas['line']['label']) !!}
+    var datas1 = {!! json_encode($chart_datas['line']['data1']) !!}
+    var datas2 = {!! json_encode($chart_datas['line']['data2']) !!}
+
     const lineUserConfig = {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: labels2,
         datasets: [
           {
-            label: 'Organic',
+            label: 'Volume Masuk',
             backgroundColor: '#0694a2',
             borderColor: '#0694a2',
-            data: [43, 48, 40, 54, 67, 73, 70],
+            data: datas1,
             fill: false,
           },
           {
-            label: 'Paid',
+            label: 'Volume Keluar',
             fill: false,
             backgroundColor: '#7e3af2',
             borderColor: '#7e3af2',
-            data: [24, 50, 64, 74, 52, 51, 65],
+            data: datas2,
           },
         ],
       },
@@ -207,14 +211,14 @@
             display: true,
             scaleLabel: {
               display: true,
-              labelString: 'Month',
+              labelString: 'Tanggal',
             },
           },
           y: {
             display: true,
             scaleLabel: {
               display: true,
-              labelString: 'Value',
+              labelString: 'Volume',
             },
           },
         },

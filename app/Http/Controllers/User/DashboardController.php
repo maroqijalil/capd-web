@@ -27,10 +27,20 @@ class DashboardController extends Controller
 
 	public function show(Request $request, $id)
 	{
-		$replacements = GetAllReplacementDetail::run($id, 10);
+		$user_id = $id;
+		$replacements = GetAllReplacementDetail::run($id, 5);
 		$todays_replacement = GetTodayReplacementDetail::run($id);
 		$chart_datas = GetReplacementDatasForChart::run($id);
-		return view('user.dashboard', compact(['replacements', 'todays_replacement', 'chart_datas']));
+
+		return view(
+			'user.dashboard',
+			compact([
+				'replacements',
+				'todays_replacement',
+				'chart_datas',
+				'user_id'
+			])
+		);
 	}
 
 	public function edit($id)

@@ -10,8 +10,9 @@ class AppLayout extends Component
 	public $title;
 	public $withMenu;
 	public $user;
+	public $userId;
 
-	public function __construct($title, $withMenu = "true")
+	public function __construct($title, $withMenu = "true", $userId = "")
 	{
 		$this->title = $title;
 		if ($withMenu == "true") {
@@ -20,6 +21,7 @@ class AppLayout extends Component
 			$this->withMenu = false;
 		}
 		$this->user = GetUser::run();
+		$this->userId = $userId;
 	}
 
 	public function render()

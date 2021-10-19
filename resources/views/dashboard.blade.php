@@ -117,21 +117,23 @@
         </div>
       </a>
       @else
-      <div class="flex items-center p-4 bg-red-50 rounded-lg shadow-xs transition-colors duration-150 hover:bg-white cursor-pointer">
-        <div class="w-14 h-14 justify-self-start p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-          @include('icons.person', ['size' => 8])
+      <a href="{{ route('user.dashboard', ['id' => $user->user_id]) }}">
+        <div class="flex items-center p-4 bg-red-50 rounded-lg shadow-xs transition-colors duration-150 hover:bg-white cursor-pointer">
+          <div class="w-14 h-14 justify-self-start p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+            @include('icons.person', ['size' => 8])
+          </div>
+          <div class="flex-1 flex flex-col items-stretch">
+            <p class="font-semibold text-md">{{ $user->nama }}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-40">
+              {{ $user->email }}
+            </p>
+            <p class="text-xs text-gray-600 dark:text-gray-40">
+              {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
+            </p>
+          </div>
+          @include('icons.arrow-right')
         </div>
-        <div class="flex-1 flex flex-col items-stretch">
-          <p class="font-semibold text-md">{{ $user->nama }}</p>
-          <p class="text-sm text-gray-600 dark:text-gray-40">
-            {{ $user->email }}
-          </p>
-          <p class="text-xs text-gray-600 dark:text-gray-40">
-            {{ ($user->no_hp == "") ? "-" : $user->no_hp }}
-          </p>
-        </div>
-        @include('icons.arrow-right')
-      </div>
+      </a>
       @endif
       @php
         $index++;
