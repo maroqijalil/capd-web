@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Actions\Replacement\GetAllReplacementDetail;
+use App\Actions\Replacement\GetReplacementDatasForChart;
 use App\Actions\Replacement\GetTodayReplacementDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,9 +27,10 @@ class DashboardController extends Controller
 
 	public function show(Request $request, $id)
 	{
-		$replacements = $this->makePagination($request, GetAllReplacementDetail::run($id), 10);
+		$replacements = GetAllReplacementDetail::run($id, 10);
 		$todays_replacement = GetTodayReplacementDetail::run($id);
-		return view('user.dashboard', compact(['replacements', 'todays_replacement']));
+		$chart_datas = GetReplacementDatasForChart::run($id);
+		return view('user.dashboard', compact(['replacements', 'todays_replacement', 'chart_datas']));
 	}
 
 	public function edit($id)

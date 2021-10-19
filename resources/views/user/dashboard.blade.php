@@ -16,7 +16,7 @@
             Jumlah Penggantian
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{ $replacements->total() }}
+            {{ count($replacements) }}
           </p>
         </div>
       </div>
@@ -37,36 +37,35 @@
     </div>
 
     <!-- Charts -->
-    {{-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Charts
+    <h2 class="my-6 text-xl font-bold text-gray-700 dark:text-gray-200">
+      Ringkasan Data (7 hari terakhir)
     </h2>
     <div class="grid gap-6 mb-4 md:grid-cols-2">
       <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-          Revenue
+          Cairan
         </h4>
-        <canvas id="pie"></canvas>
+        <canvas id="pie-user"></canvas>
         <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-          <!-- Chart legend -->
+          @php
+            $index = 0;
+          @endphp
+          @foreach ($chart_datas['pie']['label'] as $label)
           <div class="flex items-center">
-            <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-            <span>Shirts</span>
+            <span class="inline-block w-3 h-3 mr-1 rounded-full" style="background: {{ $chart_datas['pie']['color'][$index] }};"></span>
+            <span>{{ $label }}</span>
           </div>
-          <div class="flex items-center">
-            <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-            <span>Shoes</span>
-          </div>
-          <div class="flex items-center">
-            <span class="inline-block w-3 h-3 mr-1 bg-red-600 rounded-full"></span>
-            <span>Bags</span>
-          </div>
+          @php
+            $index++;
+          @endphp
+          @endforeach
         </div>
       </div>
       <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-          Traffic
+          Penggantian
         </h4>
-        <canvas id="line"></canvas>
+        <canvas id="line-user"></canvas>
         <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
           <!-- Chart legend -->
           <div class="flex items-center">
@@ -79,7 +78,7 @@
           </div>
         </div>
       </div>
-    </div> --}}
+    </div>
 
     <div class="bg-gray-300 my-2 mx-auto" style="height: 0.5px; width: 500px;"></div>
 
@@ -139,11 +138,90 @@
     {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
   </div>
 
-  {{-- <div class="py-12">
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-        <x-jet-welcome />
-      </div>
-    </div>
-  </div> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
+  <script>
+    var datas = {!! json_encode($chart_datas['pie']['data']) !!}
+    var labels = {!! json_encode($chart_datas['pie']['label']) !!}
+    var colors = {!! json_encode($chart_datas['pie']['color']) !!}
+    
+    const pieUserConfig = {
+      type: 'doughnut',
+      data: {
+        datasets: [
+          {
+            data: datas,
+            backgroundColor: colors,
+            label: 'Dataset 1',
+          },
+        ],
+        labels: labels,
+      },
+      options: {
+        responsive: true,
+        cutoutPercentage: 80,
+        legend: {
+          display: false,
+        },
+      },
+    }
+
+    const pieUserCtx = document.getElementById('pie-user')
+    window.myPie = new Chart(pieUserCtx, pieUserConfig)
+
+    const lineUserConfig = {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+          {
+            label: 'Organic',
+            backgroundColor: '#0694a2',
+            borderColor: '#0694a2',
+            data: [43, 48, 40, 54, 67, 73, 70],
+            fill: false,
+          },
+          {
+            label: 'Paid',
+            fill: false,
+            backgroundColor: '#7e3af2',
+            borderColor: '#7e3af2',
+            data: [24, 50, 64, 74, 52, 51, 65],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true,
+        },
+        scales: {
+          x: {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Month',
+            },
+          },
+          y: {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Value',
+            },
+          },
+        },
+      },
+    }
+
+    const lineUserCtx = document.getElementById('line-user')
+    window.myLine = new Chart(lineUserCtx, lineUserConfig)
+  </script>
 </x-app-layout>

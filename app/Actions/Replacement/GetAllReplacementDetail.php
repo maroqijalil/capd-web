@@ -20,15 +20,20 @@ class GetAllReplacementDetail
     $this->db = $firestore->database();
   }
 
-  public function handle($id): array
+  public function handle($id, $limit = -1): array
   {
     $path = $this->db->collection(User::getRefName())
       ->document($id)
       ->collection(Replacement::getRefName());
 
     $replacements = $path
-      ->orderBy('tanggal_stamp', 'DESC')
-      ->documents();
+      ->orderBy('tanggal_stamp', 'DESC');
+    
+    if ($limit != -1) {
+      $replacements = $replacements->limit($limit);
+    }
+
+    $replacements = $replacements->documents();
 
     $datas = [];
     foreach ($replacements as $replacement) {
